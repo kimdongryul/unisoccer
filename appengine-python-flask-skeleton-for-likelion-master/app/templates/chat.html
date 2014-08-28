@@ -1,0 +1,35 @@
+{%extends "base.html"%}
+{%block layout%}
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-offset-2">
+			<h1>채팅방</h1>
+		</div>
+	</div>
+	<div id="chat">
+		<div class="row">
+			<div class="col-md-offset-2 col-md-6" id="chat-room" style=" height: 300px; overflow: scroll;background-color: #ccffcc;">
+				<table id="chat-table">
+					
+				</table>
+			</div>
+			<div class="col-md-2" id="users" style="height: 300px; overflow: scroll;background-color: white;">
+				<ul>접속자</ul>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-offset-2" id="chat-form">
+				<input type="text" id="chat_msg" placeholder="할말">
+				<input type="button" id="send" value="보내기">
+			</div>
+		</div>
+	</div>
+
+</div>
+{%endblock%}
+{%block scripts%}
+<script src="{{url_for('static', filename='js/base.js')}}"></script>
+{%endblock%}

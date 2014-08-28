@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+{%block layout%}
+	<a class="btn btn-block btn-social btn-facebook" href="{{url_for('login')}}">
+    		<i class="fa fa-facebook"></i>Sing In With Facebook
+  	</a>
+{%endblock%}
+
+
+
+
+
+{%block scripts%}
+<script src="{{url_for('static', filename='js/base.js')}}"></script>
+{%endblock%}

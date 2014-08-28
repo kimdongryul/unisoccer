@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block layout %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-2">
+			<h1>AJAX example</h1>
+		</div>	
+	</div>	
+	<div class="row">
+		<div class="col-md-offset-2">
+			<input type="text" name="ajax1">+
+			<input type="text" name="ajax2">
+			<a class="btn btn-default btn-sm" id="submit">전송</a>
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="col-md-offset-2">
+			<div>결과 : <div id="result"></div></div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
