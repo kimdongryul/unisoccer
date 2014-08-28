@@ -1,0 +1,14 @@
+@import url(http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb); 
+
+* { font-family: 'NanumGothic', '나눔고딕','NanumGothicWeb', '맑은 고딕', 'Malgun Gothic', Dotum; }
+
+.navbar{
+background-color: #6AB48F;
+height: 85px;
+}
+
+.navbar .nav > li > a {
+    color:  #fff; !important;
+    vertical-align: center; !important;
+    font-size: 12pt;
+}
