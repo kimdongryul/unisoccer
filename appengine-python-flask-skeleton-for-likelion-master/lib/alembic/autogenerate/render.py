@@ -6,6 +6,8 @@ from ..compat import string_types
 
 log = logging.getLogger(__name__)
 
+MAX_PYTHON_ARGS = 255
+
 try:
     from sqlalchemy.sql.naming import conv
     def _render_gen_name(autogen_context, name):
@@ -44,19 +46,24 @@ def _render_potential_expr(value, autogen_context):
         return repr(value)
 
 def _add_table(table, autogen_context):
+    args = [col for col in
+            [_render_column(col, autogen_context) for col in table.c]
+        if col] + \
+        sorted([rcons for rcons in
+            [_render_constraint(cons, autogen_context) for cons in
+                table.constraints]
+            if rcons is not None
+        ])
+
+    if len(args) > MAX_PYTHON_ARGS:
+        args = '*[' + ',\n'.join(args) + ']'
+    else:
+        args = ',\n'.join(args)
+
     text = "%(prefix)screate_table(%(tablename)r,\n%(args)s" % {
         'tablename': table.name,
         'prefix': _alembic_autogenerate_prefix(autogen_context),
-        'args': ',\n'.join(
-            [col for col in
-                [_render_column(col, autogen_context) for col in table.c]
-            if col] +
-            sorted([rcons for rcons in
-                [_render_constraint(cons, autogen_context) for cons in
-                    table.constraints]
-                if rcons is not None
-            ])
-        )
+        'args': args,
     }
     if table.schema:
         text += ",\nschema=%r" % table.schema
@@ -307,7 +314,7 @@ def _render_column(column, autogen_context):
         'kw': ", ".join(["%s=%s" % (kwname, val) for kwname, val in opts])
     }
 
-def _render_server_default(default, autogen_context):
+def _render_server_default(default, autogen_context, repr_=True):
     rendered = _user_defined_render("server_default", default, autogen_context)
     if rendered is not False:
         return rendered
@@ -319,11 +326,11 @@ def _render_server_default(default, autogen_context):
             default = str(default.arg.compile(
                             dialect=autogen_context['dialect']))
     if isinstance(default, string_types):
-        # TODO: this is just a hack to get
-        # tests to pass until we figure out
-        # WTF sqlite is doing
-        default = re.sub(r"^'|'$", "", default)
-        return repr(default)
+        if repr_:
+            default = re.sub(r"^'|'$", "", default)
+            return repr(default)
+        else:
+            return default
     else:
         return None
 
@@ -377,18 +384,14 @@ def _fk_colspec(fk, metadata_schema):
     never tries to resolve the remote table.
 
     """
-    if metadata_schema is None:
-        return fk._get_colspec()
-    else:
+    colspec = fk._get_colspec()
+    if metadata_schema is not None and colspec.count(".") == 1:
         # need to render schema breaking up tokens by hand, since the
         # ForeignKeyConstraint here may not actually have a remote
         # Table present
-        tokens = fk._colspec.split(".")
         # no schema in the colspec, render it
-        if len(tokens) == 2:
-            return "%s.%s" % (metadata_schema, fk._colspec)
-        else:
-            return fk._colspec
+        colspec = "%s.%s" % (metadata_schema, colspec)
+    return colspec
 
 def _render_foreign_key(constraint, autogen_context):
     rendered = _user_defined_render("foreign_key", constraint, autogen_context)
