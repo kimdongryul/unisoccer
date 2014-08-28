@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block layout %}
+	<div class="container">
+		<div class="row">
+			<a class="btn btn-block btn-social btn-facebook col-md-4" id = "login_fa" href="{{ url_for('login_fa')}}">
+				<i class-"fa fa-facebook"></i> Sign in with Facebook
+			</a>
+		</div>
+		<div class="row">
+			<a class="btn btn-block btn-social btn-twitter col-md-4" id = "login_tw" href="{{ url_for('login_tw')}}">
+				<i class-"fa fa-twitter"></i> Sign in with Twitter
+			</a>
+		</div>
+		<div class="row">
+			<a class="btn btn-block btn-social btn-google-plus col-md-4" id = "login_go" href="{{ url_for('google_index')}}">
+				<i class-"fa fa-google-plus"></i> Sign in with Goggle+
+			</a>
+		</div>		
+	</div>
+{% endblock %}
