@@ -4,8 +4,8 @@ from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Manager
 from flask_oauth import OAuth
 from app import settings
-GOOGLE_CLIENT_ID = '601137007401-p4hgs58b11r0l6i21hv8qu8hjct3dfh4.apps.googleusercontent.com'
-GOOGLE_CLIENT_SECRET = 'aH-zOJhEtM_jAj0-sJpm6FFP'
+GOOGLE_CLIENT_ID = '589738271014-hmhlffe005g8gegoa817plq0t97tjgsj.apps.googleusercontent.com'
+GOOGLE_CLIENT_SECRET = 'ALMDqKsPDSBCjrQMLg1atJUN'
 # one of the Redirect URIs from Google APIs console
 
 SECRET_KEY = 'development key'
@@ -33,8 +33,8 @@ twitter = oauth.remote_app('twitter',
     request_token_url='https://api.twitter.com/oauth/request_token',
     access_token_url='https://api.twitter.com/oauth/access_token',
     authorize_url='https://api.twitter.com/oauth/authenticate',
-    consumer_key='RGCphMmTY2a2ktPpyoVNYI6UT',
-    consumer_secret='s3EiYzCsYVF3y6rXFT414vu6XDJYGvK18E6lfHvlRZIEVTFkvp'
+    consumer_key='VCPy3VHP26TNAtYRBVmq3V9kA',
+    consumer_secret='kgnmK1EjmIZ9mNq1Ov70LQ6HeiLFGnrk9ZBJ8AXnj5y3ivh05v'
     )
 
 google = oauth.remote_app('google',
