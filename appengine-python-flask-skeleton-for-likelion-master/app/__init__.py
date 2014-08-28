@@ -8,6 +8,7 @@ GOOGLE_CLIENT_ID = '589738271014-hmhlffe005g8gegoa817plq0t97tjgsj.apps.googleuse
 GOOGLE_CLIENT_SECRET = 'ALMDqKsPDSBCjrQMLg1atJUN'
 # one of the Redirect URIs from Google APIs console
 
+
 SECRET_KEY = 'development key'
 DEBUG = True
 
