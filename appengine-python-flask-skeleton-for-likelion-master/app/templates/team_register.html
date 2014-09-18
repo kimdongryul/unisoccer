@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block layout %}
+	<div class="container">
+		<div class="row">
+		</div>
+		<div class="row">
+		</div>
+		<div class="row">
+
+
+		</div>
+		<div >
+			{% for message in form.teamname.errors %}
+			<div class="flash">{{ message }}</div>
+			{% endfor %}
+ 
+			{% for message in form.location.errors %}
+			<div class="flash">{{ message }}</div>
+			{% endfor %}
+	 
+			{% for message in form.university.errors %}
+			<div class="flash">{{ message }}</div>
+			{% endfor %}
+
+			{% for message in form.introduce.errors %}
+			<div class="flash">{{ message }}</div>
+			{% endfor %}
+
+			{% for message in form.favorite_date.errors %}
+			<div class="flash">{{ message }}</div>
+			{% endfor %}
+
+			{% for message in form.favorite_place.errors %}
+			<div class="flash">{{ message }}</div>
+			{% endfor %}
+
+
+	 
+			<form action="{{ url_for('team_register') }}" method="post">
+				{{ form.hidden_tag() }}
+				<div class="row">
+				{{ form.teamname.label }}
+				{{ form.teamname }}
+				</div>
+				<div class="row">
+				{{ form.location.label }}
+				{{ form.location }}
+				</div>
+				<div class="row">
+				{{ form.university.label }}
+				{{ form.university }}
+				</div>
+				</div>
+				<div class="row">
+				{{ form.introduce.label }}
+				{{ form.introduce }}
+				</div>
+				<div class="row">
+				{{ form.favorite_date.label }}
+				{{ form.favorite_date }}
+				</div>
+				<div class="row">
+				{{ form.favorite_place.label }}
+				{{ form.favorite_place }}
+				</div>
+				<div class="row">
+				{{ form.submit }}
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+{% endblock %}

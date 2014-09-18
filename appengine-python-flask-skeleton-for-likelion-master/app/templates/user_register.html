@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block layout %}
+	<div class="container">
+		<div class="row">
+		</div>
+		<div class="row">
+		</div>
+		<div class="row">
+
+
+		</div>
+		<div >
+			{% for message in form.user_name.errors %}
+			<div class="flash">{{ message }}</div>
+			{% endfor %}
+ 
+			{% for message in form.phone_number.errors %}
+			<div class="flash">{{ message }}</div>
+			{% endfor %}
+	 
+			{% for message in form.location_first.errors %}
+			<div class="flash">{{ message }}</div>
+			{% endfor %}
+	 
+			{% for message in form.university.errors %}
+			<div class="flash">{{ message }}</div>
+			{% endfor %}
+	 
+			<form action="{{ url_for('user_register') }}" method="post">
+				{{ form.hidden_tag() }}
+				<div class="row">
+				{{ form.user_name.label }}
+				{{ form.user_name }}
+				</div>
+				<div class="row">
+				{{ form.phone_number.label }}
+				{{ form.phone_number }}
+				</div>
+				<div class="row">
+				{{ form.location_first.label }}
+				{{ form.location_first }}
+				</div>
+				<div class="row">
+				{{ form.university.label }}
+				{{ form.university }}
+				</div>
+				<div class="row">
+				{{ form.submit }}
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+{% endblock %}

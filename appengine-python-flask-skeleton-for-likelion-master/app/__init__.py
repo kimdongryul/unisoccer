@@ -4,6 +4,7 @@ from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Manager
 from flask_oauth import OAuth
 from app import settings
+
 GOOGLE_CLIENT_ID = '601137007401-p4hgs58b11r0l6i21hv8qu8hjct3dfh4.apps.googleusercontent.com'
 GOOGLE_CLIENT_SECRET = 'aH-zOJhEtM_jAj0-sJpm6FFP'
 # one of the Redirect URIs from Google APIs console
