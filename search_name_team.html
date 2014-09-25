@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block layout %}
+<div class="container">
+	<div class="row">
+	</div>
+	<div class="row">
+	</div>
+	<div class="row">
+
+
+	</div>
+	<div >
+		{% for message in form.teamname.errors %}
+		<div class="flash">{{ message }}</div>
+		{% endfor %}
+
+		<form action="{{ url_for('search_name_team') }}" method="post">
+			{{ form.hidden_tag() }}
+			<div class="row">
+				{{ form.teamname.label }}
+				{{ form.teamname }}
+			</div>
+
+		</div>
+		<div class="row">
+			{{ form.submit }}
+		</div>
+	</form>
+	{% if result_list %}
+	{% for result in result_list %}
+
+	<div>{{ result.teamname }}</div>
+
+	{% endfor %}
+	{% endif %}
+</div>
+
+</div>
+
+{% endblock %}
